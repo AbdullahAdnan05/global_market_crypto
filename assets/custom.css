@@ -1,0 +1,94 @@
+/* Whole page background */
+body {
+  background-color: #192132; /* Was: #121826 */
+  color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Rounded and styled tab bar container */
+.tab-container {
+  background-color: #121826; /* Slightly darker tab bar */
+  padding: 10px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+
+.tab-style {
+  background-color: #1e1e2f;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 10px 18px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ✅ Force hover background to show using !important */
+.tab-style:hover {
+  background-color: #0d6efd !important;
+  color: white !important;
+}
+
+.tab-selected-style {
+  background-color: #1e1e2f !important; /* Match content background */
+  color: white !important;
+  font-weight: bold;
+  border: 2px solid #0d6efd;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 10px 18px;
+  margin-right: 8px;
+  z-index: 10;
+  position: relative;
+}
+
+/* Chart & Card container (card styling already applied in layout.py) */
+.card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card headers */
+.card-header {
+  background-color: #0d6efd;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Header */
+.header-title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  background-color: #0d6efd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Section titles (used in controls) */
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #343a40;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-left: 5px solid #0d6efd;
+  padding-left: 10px;
+  background-color: #f0f2f5;
+}
+
+/* Override graph background (optional) */
+.js-plotly-plot .plotly {
+  background-color: #f8f9fa !important;
+  border-radius: 8px;
+  padding: 8px;
+}
