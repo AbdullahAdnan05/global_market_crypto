@@ -41,7 +41,7 @@ def job():
 
 def start_scheduler():
     schedule.every(10).minutes.do(job)
-    print("⏳ Cloud scheduler started (every 10 mins)")
+    print("[Render Worker] Cloud scheduler started...", flush=True)
 
     while True:
         schedule.run_pending()
