@@ -52,8 +52,16 @@
 # migrate_table("crypto_prices")
 # migrate_table("crypto_metrics")
 
-from ingestion.schedular_cloud import job, start_scheduler
+# from ingestion.schedular_cloud import job, start_scheduler
+
+# if __name__ == "__main__":
+#     job()
+#     start_scheduler()
+
+from server import app
+
 
 if __name__ == "__main__":
-    job()
-    start_scheduler()
+    from os import getenv
+    port = int(getenv("PORT", 8050))
+    app.run(debug=False, host="0.0.0.0", port=port)

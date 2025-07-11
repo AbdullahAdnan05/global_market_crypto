@@ -15,8 +15,3 @@ app.layout = get_layout()
 
 # Required by Gunicorn
 server = app.server
-
-if __name__ == "__main__":
-    from os import getenv
-    port = int(getenv("PORT", 8050))
-    app.run(debug=False, host="0.0.0.0", port=port)
