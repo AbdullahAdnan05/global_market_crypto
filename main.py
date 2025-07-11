@@ -46,3 +46,14 @@
 #     print("✅ Metrics inserted.")
 # else:
 #     print("⚠️ No data to insert.")
+
+# from scripts.migrate_mysql_to_postgres import migrate_table
+
+# migrate_table("crypto_prices")
+# migrate_table("crypto_metrics")
+
+from ingestion.schedular_cloud import job, start_scheduler
+
+if __name__ == "__main__":
+    job()
+    start_scheduler()

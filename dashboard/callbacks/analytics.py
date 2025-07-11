@@ -1,6 +1,7 @@
+# ---------------It work for bot not need to change 
 from dash import Output, Input
 from sqlalchemy import text
-from database.db_engine import get_engine
+from database.db_engine import _choose_engine
 import pandas as pd
 
 def register_analytics_callbacks(app):
@@ -18,7 +19,7 @@ def register_analytics_callbacks(app):
         """
         Dynamically fills the analytics dropdown with unique coin IDs.
         """
-        engine = get_engine()
+        engine = _choose_engine()
         with engine.connect() as conn:
             rows = conn.execute(
                 text("SELECT DISTINCT coin_id FROM crypto_metrics")
@@ -42,7 +43,7 @@ def register_analytics_callbacks(app):
         if not coin_id:
             return {}, {}, {}
 
-        engine = get_engine()
+        engine = _choose_engine()
         with engine.connect() as conn:
             df = pd.read_sql(text("""
                 SELECT computed_at, volatility_24h, rolling_mean_7d, cv_24h_pct
@@ -113,7 +114,7 @@ def register_analytics_callbacks(app):
         if not coin_id:
             return "N/A", "N/A", "N/A"
 
-        engine = get_engine()
+        engine = _choose_engine()
         with engine.connect() as conn:
             row = conn.execute(text("""
                 SELECT volatility_24h, cv_24h_pct, rolling_mean_7d
