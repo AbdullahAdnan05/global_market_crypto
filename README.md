@@ -37,7 +37,7 @@ We separate them because:
 | UI            | Python Dash + Bootstrap (Cyborg Theme)        |
 | Backend       | Python, SQLAlchemy, CoinGecko API             |
 | Scheduler     | `schedule` library (every 10 mins)            |
-| DB            | SQLite (local) / PostgreSQL (cloud via Render)|
+| DB            | MySQL (local) / PostgreSQL (cloud via Render)|
 | Email Alerts  | `smtplib` + Gmail                             |
 | Testing       | `pytest` (unit, integration, e2e)             |
 | Deployment    | Render (free tier)                            |
