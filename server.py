@@ -13,6 +13,9 @@ register_callbacks(app)
 app.title = "Global Market Pulse"
 app.layout = get_layout()
 
+# Required by Gunicorn
+server = app.server
+
 if __name__ == "__main__":
     from os import getenv
     port = int(getenv("PORT", 8050))
