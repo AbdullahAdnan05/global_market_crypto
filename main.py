@@ -58,10 +58,16 @@
 #     job()
 #     start_scheduler()
 
-from server import app
+# from server import app
 
 
+# if __name__ == "__main__":
+#     from os import getenv
+#     port = int(getenv("PORT", 8050))
+#     app.run(debug=False, host="0.0.0.0", port=port)
+
+from ingestion.schedular_cloud import start_scheduler,job
+ 
 if __name__ == "__main__":
-    from os import getenv
-    port = int(getenv("PORT", 8050))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    job()  # Optional: Run immediately on startup
+    start_scheduler()
