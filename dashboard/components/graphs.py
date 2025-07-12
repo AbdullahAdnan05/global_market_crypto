@@ -38,9 +38,9 @@ from dash import dcc, html
 # ======================
 def overview_graphs():
     return html.Div([
-        html.H5("Price History", className="mt-3 text-primary fw-bold"),
+        html.H5("Select c coin", className="mt-3 text-primary fw-bold"),
         dcc.Dropdown(id="coin-dropdown", placeholder="Select a coin ....", className="mb-3"),
-        html.H5("Price History", className="mt-3 section-title"),
+        html.H5("Price History", className="mt-3 text-primary fw-bold"),
         dcc.Graph(id="price-history", className="mb-4"),
 
         html.H5("Rolling Volatility", className="text-info fw-bold"),
