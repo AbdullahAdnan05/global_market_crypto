@@ -43,8 +43,8 @@ def job():
 
 #  Start the scheduler loop (every 30 minutes)
 def start_scheduler():
-    schedule.every(45).minutes.do(job)
-    print("[Railway Worker] Cloud scheduler started. Running every 45 minutes...", flush=True)
+    schedule.every(120).minutes.do(job)
+    print("[Railway Worker] Cloud scheduler started. Running every 2 hours...", flush=True)
 
     while True:
         schedule.run_pending()
