@@ -10,3 +10,4 @@ SQLAlchemy==2.0.41
 yagmail==0.15.293
 gunicorn
 psycopg2-binary
+pymysql

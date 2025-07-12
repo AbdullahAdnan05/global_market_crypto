@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 from config.settings import COINGECKO_BASE_URL
+import time
 
 def get_top_coins(limit=5) -> pd.DataFrame:
     """
@@ -48,17 +49,39 @@ def get_top_coins(limit=5) -> pd.DataFrame:
     
     return df
 
-def fetch_latest_price(coin_id:str, symbol: str)-> pd.DataFrame:
+
+def fetch_latest_price(coin_id: str, symbol: str) -> pd.DataFrame:
+    """
+    Fetches rich price data from CoinGecko with retry logic on 429 errors.
+
+    Returns:
+        pd.DataFrame with price, market_cap, volume, etc.
+    """
     url = f"{COINGECKO_BASE_URL}/coins/{coin_id}"
-    params = {"localiztion": "false", "tickers": "false", "market_data": "true"}
-    
-    response = requests.get(url, params=params, timeout=10)
-    response.raise_for_status()
+    params = {
+        "localization": "false",
+        "tickers": "false",
+        "market_data": "true"
+    }
+
+    for attempt in range(3):
+        try:
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            break
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 429:
+                print(f"⚠️ 429 Too Many Requests — sleeping 20s and retrying (attempt {attempt + 1}/3)")
+                time.sleep(20)
+            else:
+                raise
+        except Exception as e:
+            raise RuntimeError(f"❌ Failed to fetch {coin_id}: {e}")
+
     data = response.json()
-    
     market = data["market_data"]
     timestamp = pd.to_datetime(market["last_updated"])
-    
+
     row = {
         "coin_id": coin_id,
         "symbol": symbol,
@@ -69,5 +92,5 @@ def fetch_latest_price(coin_id:str, symbol: str)-> pd.DataFrame:
         "timestamp": timestamp,
         "granularity": "hourly"
     }
-    
+
     return pd.DataFrame([row])

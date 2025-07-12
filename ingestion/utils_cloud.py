@@ -3,7 +3,7 @@ from ingestion.crypto_api import fetch_latest_price
 from ingestion.email_alerts import notify_error
 from database.db_handler import insert_crypto_prices
 
-def throttled_fetch_and_insert_cloud(coins, batch_size=5, delay_between_batches=60):
+def throttled_fetch_and_insert_cloud(coins, batch_size=5, delay_between_batches=90):
     """
     Cloud version of throttled fetch. Pushes data to PostgreSQL.
     """
@@ -20,7 +20,7 @@ def throttled_fetch_and_insert_cloud(coins, batch_size=5, delay_between_batches=
             except Exception as e:
                 print(f"❌ Error fetching {coin_id}:", e)
                 notify_error(str(e))
-            time.sleep(2)
+            time.sleep(6)
 
         if batch_num < len(batches) - 1:
             print(f"⏳ Waiting {delay_between_batches} sec before next batch...")
