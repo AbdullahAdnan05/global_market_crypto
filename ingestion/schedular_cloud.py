@@ -26,7 +26,7 @@ def job():
 
     try:
         # Step 1: Fetch and insert latest price data
-        throttled_fetch_and_insert_cloud(COINS, batch_size=4, delay_between_batches=60)
+        throttled_fetch_and_insert_cloud(COINS, batch_size=4, delay_between_batches=90)
 
         # Step 2: Compute & insert hourly metrics
         df_metrics = compute_metrics(granularity="hourly")
