@@ -29,7 +29,7 @@ def job():
         throttled_fetch_and_insert_cloud(COINS, batch_size=4, delay_between_batches=90)
 
         # Step 2: Compute & insert hourly metrics
-        df_metrics = compute_metrics(granularity="hourly")
+        df_metrics = compute_metrics(granularity="hourly", engine_type="cloud")
         if not df_metrics.empty:
             insert_crypto_metrics(df_metrics, engine_type="cloud")
             print(f"📊 Inserted {len(df_metrics)} metric rows into PostgreSQL.", flush=True)

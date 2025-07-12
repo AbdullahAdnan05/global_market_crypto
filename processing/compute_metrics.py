@@ -1,10 +1,10 @@
 import pandas as pd
 from sqlalchemy import text
-from database.db_engine import get_engine
+from database.db_engine import _choose_engine
 from datetime import datetime, timedelta
 
-def compute_metrics(granularity="hourly") -> pd.DataFrame:
-    engine = get_engine()
+def compute_metrics(granularity="hourly", engine_type="local") -> pd.DataFrame:
+    engine = _choose_engine(engine_type)
     with engine.connect() as conn:
         query= text("""
             SELECT coin_id, symbol, price, timestamp
