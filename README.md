@@ -6,7 +6,7 @@ A full-stack crypto dashboard app that fetches real-time data from CoinGecko, st
 
 ## 🚀 Features
 
-- ⏱ Scheduled ingestion every 10 minutes (via `schedular.py`)
+- ⏱ Scheduled ingestion every 2 hours (via `schedular_clouds.py`)
 - 📊 Real-time Dash dashboard UI
 - 📥 Data from CoinGecko + ExchangeRate API
 - 🧠 Computes volatility, CV, and other analytics
